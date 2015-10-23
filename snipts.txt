@@ -1,0 +1,29 @@
+<script type="text/javascript">
+      var arr = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    var tokens = [],i = 0,$ctn = $('#app');
+    arr.forEach(function(v){
+      if(v == 'a' || v== 'b')
+        return;
+      arr.forEach(function(v2){
+        arr.forEach(function(v3){
+          tokens[i++] = v+v2+v3;
+        });
+        });
+      });
+    console.log(tokens[2]);
+    function load(){
+      var name = tokens[i++];
+      if(!name)
+        return;
+      $ctn.load('/ajax/'+name,function(d,s,x){
+        if(x.status === 404){
+          console.log(name)
+        }
+        setTimeout(function(){
+          load();
+        },2000);
+      })
+    }
+    i = 0;
+    load()
+    </script>
