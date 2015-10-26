@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>fileapi</title>
+    </head>
+    <body>
+        <div id="msg">
+            //http://yaotv.qq.com/shake_tv/auto/8qwfzhifnojt57/index.html?openid=olyOrjj85on_h51cVJ6nWy80wutc&headimgurl=&nickname=%E4%BD%99&unionid=oufcWw138tnYhnqjq06xiUECsRGg&unionid=oufcWwypjL__tO7cEX5tTKeKPD3g&cb41faa22e731e9b=va-57nP3LXabILyvY-_ElQPUOuT4jKQpBinafo5Cy8k&live_id=CjGyZOCNoHP84TG1Xx9ZGQ&resopenid=27894691256aa66ef945422c83615032&from=share
+
+
+
+            $.ajax({
+                    type : 'GET',
+                    async : false,
+                    url : domain_url + 'api/lottery/luck',
+                    data: { oi: openid, sn: sn },
+                    dataType : "jsonp",
+                    jsonpCallback : 'callbackLotteryLuckHandler',
+                    complete: function() {
+                        //hideLoading();
+                        //H.index.current_time();
+                    },
+                    success : function(data) {
+                        console.log(data);
+                            if(data.sn == sn){
+                            }
+                    },
+                    error : function() {
+                    }
+                });
+
+                var callbackLotteryLuckHandler = function(d){
+                    console.log(d);
+                }
+
+
+                
+        </div>
+        <script type="text/javascript" src="assets/plugins/jquery.js"></script>
+        <script type="text/javascript" src="assets/js/hongbao.js"></script>
+        <script>
+            
+        </script>
+    </body>
+</html>
