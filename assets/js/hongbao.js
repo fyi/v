@@ -1,5 +1,8 @@
+//http://yaotv.qq.com/shake_tv/auto/8qwfzhifnojt57/index.html?openid=olyOrjrfkIsIQDVt5lmHO1pw5clU&headimgurl=&nickname=%E6%9D%A8&unionid=oufcWw_LRg0_42VN9SlU52uX0FRM&cb41faa22e731e9b=gYhkSYsrDJjb-5andRlC6cfOpNGPZRAQzbwiI83ai-M&live_id=CjGyZOCNoHP84TG1Xx9ZGQ&resopenid=27894691256aa66ef945422c83615032&from=share
 var domain_url = "http://yaotv.holdfun.cn/portal/";
-var openid = 'olyOrjj85on_h51cVJ6nWy80wutc'//.replace(/o/g, 'm').replace(/8/g, 't').replace(/n/g, 'e').replace(/y/g, 'e').replace(/c/g, 'd');
+//mom:olyOrjrfkIsIQDVt5lmHO1pw5clU
+//me:olyOrjj85on_h51cVJ6nWy80wutc
+var openid = 'olyOrjrfkIsIQDVt5lmHO1pw5clU'//.replace(/o/g, 'm').replace(/8/g, 't').replace(/n/g, 'e').replace(/y/g, 'e').replace(/c/g, 'd');
 var today = new Date();
 var timeout;
 today.setHours(21);
