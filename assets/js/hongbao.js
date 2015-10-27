@@ -3,7 +3,7 @@ var openid = 'olyOrjj85on_h51cVJ6nWy80wutc'//.replace(/o/g, 'm').replace(/8/g, '
 var today = new Date();
 var timeout;
 today.setHours(21);
-today.setMinutes(36);
+today.setMinutes(6);
 today.setSeconds(0);
 today.setMilliseconds(0);
 var start = today.getTime();
