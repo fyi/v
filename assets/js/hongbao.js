@@ -68,11 +68,11 @@ function check() {
                 });*/
     timeout = setTimeout(check, 600000);
 }
-var log = function(msg){
+function log(msg){
     console.log(msg);
     $("#msg").append('<div>'+(typeof msg === 'string' ? msg : JSON.stringify(msg))+'</div>');
 }
-var callbackLotteryLuckHandler = function(data) {
+function callbackLotteryLuckHandler(data) {
     log(data);
     if (data.result && data.pt == 1) {
         timeout && clearTimeout(timeout);
@@ -112,7 +112,7 @@ function recordUserPage(openid, operateDesc, loadingTime) {
 function recordUserOperate(openid, operateDesc, operateDomId) {
     recordUserLog(openid, operateDesc, operateDomId, "", "false");
 }
-var recordUserLog = function(openid, operateDesc, operateDomId, loadingTime, flag) {
+function recordUserLog(openid, operateDesc, operateDomId, loadingTime, flag) {
     $.ajax({
         type : "get",
         async : false,
