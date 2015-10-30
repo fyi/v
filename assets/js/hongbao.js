@@ -1,34 +1,53 @@
 //http://yaotv.qq.com/shake_tv/auto/8qwfzhifnojt57/index.html?openid=olyOrjrfkIsIQDVt5lmHO1pw5clU&headimgurl=&nickname=%E6%9D%A8&unionid=oufcWw_LRg0_42VN9SlU52uX0FRM&cb41faa22e731e9b=gYhkSYsrDJjb-5andRlC6cfOpNGPZRAQzbwiI83ai-M&live_id=CjGyZOCNoHP84TG1Xx9ZGQ&resopenid=27894691256aa66ef945422c83615032&from=share
-var domain_url = "http://yaotv.holdfun.cn/portal/";
+var domain_url = '';//"http://yaotv.holdfun.cn/portal/";
 //mom:olyOrjrfkIsIQDVt5lmHO1pw5clU
 //me:olyOrjj85on_h51cVJ6nWy80wutc
 var openid = 'olyOrjrfkIsIQDVt5lmHO1pw5clU'//.replace(/o/g, 'm').replace(/8/g, 't').replace(/n/g, 'e').replace(/y/g, 'e').replace(/c/g, 'd');
 var today = new Date();
-var timeout;
 today.setHours(21);
 today.setMinutes(6);
 today.setSeconds(0);
 today.setMilliseconds(0);
 var start = today.getTime();
-console.log(today);
-console.log(start);
-console.log(openid);
+
+start = new Date().getTime()+10000;
+
+var timeout;
+log(today);
+log(start);
+log(openid);
+
+
+
+recordUserPage(openid, '深夜快递', "");
+setTimeout(function(){
+    recordUserOperate(openid, '进入互动', 'cd-express-go-btn');
+    setTimeout(function(){
+        recordUserPage(openid, '深夜快递', "");
+    },500);
+},2000)
+
 check();
 
 function check() {
     console.log("checking");
     var sn = new Date().getTime();
     if (sn < start) {
-        setTimeout(check, (start - sn > 2000) ? 2000 : 1000);
+        var dif = start - sn;
+        if(dif < 60000 && dif > 57990){
+            recordUserPage(openid, '深夜快递', "");
+        }
+        setTimeout(check, (dif > 2000) ? 2000 : 300);
         return;
     }
     if (sn - start > 71 * 60000) {
         console.log("over");
         return;
     }
-    console.log(sn);
-    //getResult('api/lottery/luck',{oi:openid,sn:sn+''}, 'callbackLotteryLuckHandler');
-    $.ajax({
+    log(sn);
+    recordUserOperate(openid, '开始抽奖', 'cd-express-lottery-btn');
+    getResult('api/lottery/luck',{oi:openid,sn:sn+''}, 'callbackLotteryLuckHandler');
+    /*$.ajax({
                     type : 'GET',
                     //async : false,
                     //headers:{'User-Agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3 (KHTML, like Gecko) Version/8.0 Mobile/12A4345d Safari/600.1.4'},
@@ -46,11 +65,15 @@ function check() {
                     },
                     error : function() {
                     }
-                });
+                });*/
     timeout = setTimeout(check, 600000);
 }
+var log = function(msg){
+    console.log(msg);
+    $("#msg").append('<div>'+(typeof msg === 'string' ? msg : JSON.stringify(msg))+'</div>');
+}
 var callbackLotteryLuckHandler = function(data) {
-    console.log(data);
+    log(data);
     if (data.result && data.pt == 1) {
         timeout && clearTimeout(timeout);
         setTimeout(function() {
@@ -65,7 +88,7 @@ var callbackLotteryLuckHandler = function(data) {
     }
 }
 function result(data) {
-    console.log(data);
+    log(data);
 }
 function getResult(url, data, callback) {
     $.ajax({
@@ -76,10 +99,33 @@ function getResult(url, data, callback) {
         dataType: "jsonp",
         jsonp: callback,
         complete: function() {
-            console.log(arguments);
+            log(arguments);
         },
         success: function(data) {
-            console.log(data);
+            log(data);
         }
     });
 };
+function recordUserPage(openid, operateDesc, loadingTime) {
+    recordUserLog(openid, operateDesc, "", loadingTime, "true");
+}
+function recordUserOperate(openid, operateDesc, operateDomId) {
+    recordUserLog(openid, operateDesc, operateDomId, "", "false");
+}
+var recordUserLog = function(openid, operateDesc, operateDomId, loadingTime, flag) {
+    $.ajax({
+        type : "get",
+        async : false,
+        url : domain_url + "api/common/reportlog",
+        dataType : "jsonp",
+        jsonp : "callback",
+        data : {
+            openid : openid,
+            operateDesc : encodeURIComponent(operateDesc),
+            operateDomId : operateDomId,
+            loadingTime : loadingTime,
+            from : 'share',
+            flag : flag
+        }
+    });
+}
