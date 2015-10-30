@@ -76,6 +76,7 @@ function callbackLotteryLuckHandler(data) {
     log(data);
     if (data.result && data.pt == 1) {
         timeout && clearTimeout(timeout);
+        log('<div style="color:red">zhongjiangla</div>');
         setTimeout(function() {
             getResult('api/lottery/award', {
                 nn: "yang",
