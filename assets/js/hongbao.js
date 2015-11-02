@@ -5,7 +5,7 @@ var domain_url = "http://yaotv.holdfun.cn/portal/";
 var openid = 'olyOrjrfkIsIQDVt5lmHO1pw5clU'//.replace(/o/g, 'm').replace(/8/g, 't').replace(/n/g, 'e').replace(/y/g, 'e').replace(/c/g, 'd');
 var today = new Date();
 today.setHours(21);
-today.setMinutes(6);
+today.setMinutes(16);
 today.setSeconds(0);
 today.setMilliseconds(0);
 var start = today.getTime();
