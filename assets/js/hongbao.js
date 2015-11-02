@@ -28,7 +28,7 @@ function check() {
     var sn = new Date().getTime();
     if (sn < start) {
         var dif = start - sn;
-        if(dif < 240000 && dif > 237990){
+        if(dif < 240000 && dif > 239000){
             recordUserPage(openid, '深夜快递', "");
             setTimeout(function(){
                 recordUserOperate(openid, '进入互动', 'cd-express-go-btn');
@@ -36,10 +36,10 @@ function check() {
                     recordUserPage(openid, '深夜快递', "");
                 },500);
             },2000)
-        }else if(dif < 60000 && dif > 57990){
+        }else if(dif < 60000 && dif > 59000){
             recordUserPage(openid, '深夜快递', "");
         }
-        setTimeout(check, (dif > 2000) ? 2000 : 300);
+        setTimeout(check, (dif > 2000) ? 2000 : 1000);
         return;
     }
     if (sn - start > 71 * 60000) {

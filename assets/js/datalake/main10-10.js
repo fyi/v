@@ -11,7 +11,7 @@ var idToNode = {},
 var mockData = (function(){
     var nodes = [], id = 1;
     "SHDC".split("").forEach(function(type,idx){
-        for(var i=0;i<10;i++){
+        for(var i=0;i<5;i++){
             var hx = Math.random()*w/2,
                 hy = Math.random()*h/2;
             var x = hx, y = hy;
@@ -83,6 +83,8 @@ function induceNetwork(data) {
     for (var idpair in idpairToLink) {
         links.push(idpairToLink[idpair]);
     }
+    console.log(nodes)
+    console.log(links)
     return {
         nodes: nodes,
         links: links
@@ -96,9 +98,9 @@ d3.json("data/getnodes.json", function(error, data) {
     window.force = d3.layout.force()
             .gravity(0.04)
             .charge(-60)
-            .friction(0.95)
+            .friction(.95)
             .linkDistance(100)
-            .linkStrength(5)
+            .linkStrength(.9)
             .size([w, h])
             .nodes(nodeArray)
             .links(linkArray)
